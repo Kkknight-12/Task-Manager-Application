@@ -1,12 +1,12 @@
-import express from "express"
-import dotenv from "dotenv"
-import cors from "cors"
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
 
 //
-import connectDB from "./database/db.js"
+import connectDB from './database/db.js'
 // routes
-import Task from "./routes/task.js"
-import User from "./routes/user.js"
+import Task from './routes/task.js'
+import User from './routes/user.js'
 
 // ---------------------------------------------------------------------------
 // adding dotenv file
@@ -20,17 +20,21 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+app.get('/hi', (req, res) => {
+  res.send('Hello World')
+})
+
 ///////////
 // routes /
-app.use("/", User)
-app.use("/tasks", Task)
+app.use('/', User)
+app.use('/tasks', Task)
 
 const PORT = process.env.PORT || DEFAULT_PORT
 
 const server = app.listen(PORT, (err) => {
   if (err) {
-    console.log("Error in Server...", err)
+    console.log('Error in Server...', err)
   } else {
-    console.log("Server Started ", server.address().port)
+    console.log('Server Started ', server.address().port)
   }
 })
